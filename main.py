@@ -45,10 +45,18 @@ def main():
         # The apology is the entry itself: it must never silently
         # go missing from the line.
         sys.exit("entry line must start with the Sorry apology")
+    if "'lock the front door' as 'block the front door'" not in line:
+        # The mishearing pair is the joke's engine: heard command
+        # versus acted-on command must both stay in the line.
+        sys.exit("entry line must keep the lock/block mishearing pair")
     if "barricaded it with the sofa" not in line:
         # The barricade punchline is what makes the mishearing
         # land instead of staying a plain apology.
         sys.exit("entry line must keep the barricade punchline")
+    if not line.endswith("of myself."):
+        # The speaker congratulating itself is the undercut the
+        # whole joke leans on: it must be the last thing said.
+        sys.exit("entry line must end with the proud-of-myself undercut")
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
